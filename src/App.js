@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import Router from './router';
+import AlertContext from './context/alert/AlertContext'
+import AlertComponent from './components/Alert'
+
+
 
 function App() {
+  const {
+    open, message, variant, severity, closeAlert,
+  } = useContext(
+    AlertContext,
+  );
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AlertComponent
+        open={open}
+        message={message}
+        severity={severity}
+        variant={variant}
+        handleClose={closeAlert}
+      />
+      <Router />
+    </>
   );
 }
 
